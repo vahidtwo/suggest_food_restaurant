@@ -6,12 +6,12 @@ from question.models import Question, Answer
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
-        fields = '__all__'
+        fields = ['id', 'answer']
 
 
 class QuestionSerializer(serializers.ModelSerializer):
-    answer = AnswerSerializer()
+    answer = AnswerSerializer('answer', many=True)
 
     class Meta:
-        model = Quetion
+        model = Question
         fields = '__all__'
