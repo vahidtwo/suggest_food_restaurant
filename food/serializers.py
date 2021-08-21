@@ -16,9 +16,27 @@ class ExerciseSerializer(serializers.ModelSerializer):
 
 
 class FoodSerializer(serializers.ModelSerializer):
-    tags = TagSerializer(many=True)
-    exercises = ExerciseSerializer(many=True)
+    tags = TagSerializer(many=True, read_only=True)
+    exercises = ExerciseSerializer(many=True, read_only=True)
 
     class Meta:
         model = Food
         fields = '__all__'
+
+
+class SuggestFoodSerializer(serializers.ModelSerializer):
+    tags = TagSerializer(many=True, read_only=True)
+    exercises = ExerciseSerializer(many=True, read_only=True)
+    sub_tag_count = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = Food
+        fields = '__all__'
+        extra_kwargs = {
+            "image": {'read_only': True},
+            'price': {'read_only': True},
+            'title': {'read_only': True},
+            'description': {'read_only': True},
+            'fat': {'read_only': True},
+            'kilo_calories': {'read_only': True},
+        }

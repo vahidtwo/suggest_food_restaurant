@@ -10,7 +10,7 @@ class Food(models.Model):
     tags = models.ManyToManyField('Tag')
     fat = models.IntegerField()
     kilo_calories = models.IntegerField()
-    exercises = models.ManyToManyField('Exercise')
+    exercises = models.ManyToManyField('Exercise', null=True, blank=True)
 
     def __str__(self):
         return self.title
